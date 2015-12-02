@@ -39,5 +39,55 @@ CHIP CPU {
         pc[15];          // address of next instruction
 
     PARTS:
-    // Put your code here:
+    //Decode
+
+     //A Load input
+    And(a=instruction[15],b=instruction[5],out=ARegAnd);
+    Not(in=instruction[15],out=ARegNot);
+    Or(a=ARegNot,b=aRegAnd,out=loadA);
+    
+    //D Load input
+    And(a=instruction[15],b=instruction[4],out=DRegAnd);
+    Or(a=instruction[15],b=DRegAnd,out=loadD);
+
+    //Mux #1
+    Mux16(a=instruction,b=ALUOut,sel=instruction[15],out=muxAIn);
+
+    //A Register
+    ARegister(in=muxAIn,load=loadA,out=outToPC,out=outToMux,out=addressM);
+
+    //D Register
+    DRegister(in=ALUOut,load=loadD,out=DRegOut);
+
+    //Mux #2
+    Mux16(a=outToMux,b=inM,sel=instruction[12],out=muxAorM);
+
+    //ALU
+    ALU(x=DRegOut,y=muxAorM,zx=instruction[11],nx=instruction[10],zy=instruction[9],ny=instruction[8],f=instruction[7],no=instruction[6]out=outM,out=ALUOut,zr=zero,ng=negative);
+
+    //PC
+
+    Not(in=negative,out=positive);
+    Not(in=zero,out=notZero)
+    Or(a=positive,b=zero,out=greaterThanOrEqualTo);
+    Or(a=negative,b=zero,out=lessThanOrEqualTo);
+
+    And(a=zero, b=instruction[1], out=jeq); //a is 0 and jump if zero j2
+    And(a=negative, b=instruction[2], out=j3on); //a is negative and jump if negative j1
+    And(a=positive, b=instruction[0], out=j1on); //is positive and jump if positive j3
+    
+    Not(in=j2on,out=j2off);
+    Not(in=j3on,out=j3off);
+    Not(in=j1on,out=j1off);
+
+    And(a=instruction[1],b=positive,out=jeq);
+    
+
+
+    Or8Way(in[0]=null, in[1]=jgt, in[2]=jeq, in[3]=jge, in[4]=jlt, in[5]=jne, in[6]=jle, in[7]=jmp, out=jumpToA);
+    And(a=instruction[15], b=jumpToA, out=PCload);
+    
+    Not(in=PCload, out=PCinc); 
+    PC(in=outToPC,load=PCload,inc=PCinc,reset=reset,out=pc);
+
 }
