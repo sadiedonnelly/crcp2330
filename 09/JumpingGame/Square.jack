@@ -16,11 +16,15 @@ class Square {
     // The size of the square
     field int size;
 
+    field int screenHeight, screenWidth;
+
     /** Constructs a new square with a given location and size. */
     constructor Square new(int Ax, int Ay, int Asize) {
         let x = Ax;
         let y = Ay;
         let size = Asize;
+        let screenHeight = 254;
+        let screenWidth = 510;
 
         do draw();
 
@@ -35,6 +39,9 @@ class Square {
 
     /** Draws the square on the screen. */
     method void draw() {
+        do Screen.drawLine(5,(screenHeight/4),screenWidth-5,(screenHeight/4));
+        do Screen.drawLine(5,(screenHeight/4)*2,screenWidth-5,(screenHeight/4)*2);
+        do Screen.drawLine(5,(screenHeight/4)*3,screenWidth-5,(screenHeight/4)*3);
         do Screen.setColor(true);
         do Screen.drawRectangle(x, y, x + size, y + size);
         return;
@@ -65,7 +72,7 @@ class Square {
             do draw();
         }
         return;
-	}
+    }
 
     /** Moves up by 2 pixels. */
     method void moveUp() {
