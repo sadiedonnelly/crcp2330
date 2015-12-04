@@ -39,9 +39,6 @@ class Square {
 
     /** Draws the square on the screen. */
     method void draw() {
-        do Screen.drawLine(5,(screenHeight/4),screenWidth-5,(screenHeight/4));
-        do Screen.drawLine(5,(screenHeight/4)*2,screenWidth-5,(screenHeight/4)*2);
-        do Screen.drawLine(5,(screenHeight/4)*3,screenWidth-5,(screenHeight/4)*3);
         do Screen.setColor(true);
         do Screen.drawRectangle(x, y, x + size, y + size);
         return;
@@ -74,7 +71,14 @@ class Square {
         return;
     }
 
-    /** Moves up by 2 pixels. */
+    method void drawLines(){
+        do Screen.drawLine(5,(screenHeight/4),screenWidth-5,(screenHeight/4));
+        do Screen.drawLine(5,(screenHeight/4)*2,screenWidth-5,(screenHeight/4)*2);
+        do Screen.drawLine(5,(screenHeight/4)*3,screenWidth-5,(screenHeight/4)*3);
+        return;
+    }   
+
+  /** Moves up by 2 pixels. */
     method void moveUp() {
         if (y > 1) {
             do Screen.setColor(false);
@@ -118,6 +122,7 @@ class Square {
             let x = x + 2;
             do Screen.setColor(true);
             do Screen.drawRectangle((x + size) - 1, y, x + size, y + size);
+
         }
         return;
     }

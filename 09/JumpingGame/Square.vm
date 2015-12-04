@@ -28,50 +28,6 @@ return
 function Square.draw 0
 push argument 0
 pop pointer 0
-push constant 5
-push this 3
-push constant 4
-call Math.divide 2
-push this 4
-push constant 5
-sub
-push this 3
-push constant 4
-call Math.divide 2
-call Screen.drawLine 4
-pop temp 0
-push constant 5
-push this 3
-push constant 4
-call Math.divide 2
-push constant 2
-call Math.multiply 2
-push this 4
-push constant 5
-sub
-push this 3
-push constant 4
-call Math.divide 2
-push constant 2
-call Math.multiply 2
-call Screen.drawLine 4
-pop temp 0
-push constant 5
-push this 3
-push constant 4
-call Math.divide 2
-push constant 3
-call Math.multiply 2
-push this 4
-push constant 5
-sub
-push this 3
-push constant 4
-call Math.divide 2
-push constant 3
-call Math.multiply 2
-call Screen.drawLine 4
-pop temp 0
 push constant 0
 not
 call Screen.setColor 1
@@ -156,6 +112,55 @@ push pointer 0
 call Square.draw 1
 pop temp 0
 label IF_FALSE0
+push constant 0
+return
+function Square.drawLines 0
+push argument 0
+pop pointer 0
+push constant 5
+push this 3
+push constant 4
+call Math.divide 2
+push this 4
+push constant 5
+sub
+push this 3
+push constant 4
+call Math.divide 2
+call Screen.drawLine 4
+pop temp 0
+push constant 5
+push this 3
+push constant 4
+call Math.divide 2
+push constant 2
+call Math.multiply 2
+push this 4
+push constant 5
+sub
+push this 3
+push constant 4
+call Math.divide 2
+push constant 2
+call Math.multiply 2
+call Screen.drawLine 4
+pop temp 0
+push constant 5
+push this 3
+push constant 4
+call Math.divide 2
+push constant 3
+call Math.multiply 2
+push this 4
+push constant 5
+sub
+push this 3
+push constant 4
+call Math.divide 2
+push constant 3
+call Math.multiply 2
+call Screen.drawLine 4
+pop temp 0
 push constant 0
 return
 function Square.moveUp 0
