@@ -1,3 +1,5 @@
 #! /usr/bin/env ruby
 
-asm_filename = puts ARGV[0]
+asm_filename = ARGV[0]
+
+puts asm_filename
