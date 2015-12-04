@@ -73,9 +73,15 @@ class SquareGame {
             }
 
             // waits for the key to be released.
+<<<<<<< HEAD
+           // while (~(key = 0)) {
+                //let key = Keyboard.keyPressed();
+                //do moveSquare();
+=======
             while (~(key = 0)) {
                 let key = Keyboard.keyPressed();
                 do moveSquare();
+>>>>>>> 0b2c97e4ebb14591a11d4c3ede0e0e5eff301f8f
             }
         }
             
@@ -98,6 +104,10 @@ class SquareGame {
         }
 
         do Sys.wait(5); // Delays the next movement.
+<<<<<<< HEAD
+
+=======
+>>>>>>> 0b2c97e4ebb14591a11d4c3ede0e0e5eff301f8f
         return;
     }
 }

@@ -73,6 +73,15 @@ class Square {
         }
         return;
     }
+<<<<<<< HEAD
+    method void drawLines(){
+        do Screen.drawLine(5,(screenHeight/4),screenWidth-5,(screenHeight/4));
+        do Screen.drawLine(5,(screenHeight/4)*2,screenWidth-5,(screenHeight/4)*2);
+        do Screen.drawLine(5,(screenHeight/4)*3,screenWidth-5,(screenHeight/4)*3);
+        return;
+    }   
+=======
+>>>>>>> 0b2c97e4ebb14591a11d4c3ede0e0e5eff301f8f
 
     /** Moves up by 2 pixels. */
     method void moveUp() {
@@ -100,7 +109,11 @@ class Square {
 
     /** Moves left by 2 pixels. */
     method void moveLeft() {
+<<<<<<< HEAD
+    if (x > 1) {
+=======
         if (x > 1) {
+>>>>>>> 0b2c97e4ebb14591a11d4c3ede0e0e5eff301f8f
             do Screen.setColor(false);
             do Screen.drawRectangle((x + size) - 1, y, x + size, y + size);
             let x = x - 2;
