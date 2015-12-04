@@ -64,10 +64,12 @@ class SquareGame {
                 do square.incSize();
             }
             if (key = 131) {
-                let direction = 1;
+                //let direction = 1;
+                do square.moveUp();
             }
             if (key = 133) {
-                let direction = 2;
+                //let direction = 2;
+                do square.moveDown();
             }
             if (key = 130) {
                 let direction = 3;

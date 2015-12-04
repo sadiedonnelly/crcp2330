@@ -93,8 +93,9 @@ eq
 if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
-push constant 1
-pop this 1
+push this 0
+call Square.moveUp 1
+pop temp 0
 label IF_FALSE3
 push local 0
 push constant 133
@@ -102,8 +103,9 @@ eq
 if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
-push constant 2
-pop this 1
+push this 0
+call Square.moveDown 1
+pop temp 0
 label IF_FALSE4
 push local 0
 push constant 130

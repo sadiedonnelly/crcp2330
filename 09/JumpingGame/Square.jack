@@ -75,18 +75,20 @@ class Square {
         do Screen.drawLine(5,(screenHeight/4),screenWidth-5,(screenHeight/4));
         do Screen.drawLine(5,(screenHeight/4)*2,screenWidth-5,(screenHeight/4)*2);
         do Screen.drawLine(5,(screenHeight/4)*3,screenWidth-5,(screenHeight/4)*3);
+        do Screen.drawLine(5,(screenHeight/8)*3,screenWidth-5,(screenHeight/8)*3);
+         do Screen.drawLine(5,(screenHeight/8)*5,screenWidth-5,(screenHeight/8)*5);
         return;
     }       
 
 
 /** Moves up by 2 pixels. */
        method void moveUp() {
-        if (y > 50) {
+        if (y > 70) {
             do Screen.setColor(false);
-            do Screen.drawRectangle(x, (y + size) - 1, x + size, y + size);
-            let y = y - 2;
+            do Screen.drawRectangle(x, (y + size) - 29, x + size, y + size);
+            let y = y - 30;
             do Screen.setColor(true);
-            do Screen.drawRectangle(x, y, x + size, y + 1);
+            do Screen.drawRectangle(x, y, x + size, y + 29);
         }
         return;
     }
@@ -96,10 +98,10 @@ class Square {
     method void moveDown() {
         if ((y + size) < 200) {
             do Screen.setColor(false);
-            do Screen.drawRectangle(x, y, x + size, y + 1);
-            let y = y + 2;
+            do Screen.drawRectangle(x, y, x + size, y + 29);
+            let y = y + 30;
             do Screen.setColor(true);
-            do Screen.drawRectangle(x, (y + size) - 1, x + size, y + size);
+            do Screen.drawRectangle(x, (y + size) - 29, x + size, y + size);
         }
         return;
     }
