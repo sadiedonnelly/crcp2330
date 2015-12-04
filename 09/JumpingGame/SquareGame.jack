@@ -20,9 +20,13 @@ class SquareGame {
     // The square's movement direction
     field int direction; // 0=none,1=up,2=down,3=left,4=right
 
+    field int screenHeight, screenWidth;
+
     /** Constructs a new Square Game. */
     constructor SquareGame new() {
-        let square = Square.new(0, 0, 30);
+        let screenHeight = 254;
+        let screenWidth = 510;
+        let square = Square.new(screenWidth/2-15, screenHeight/2-15, 30);
         let direction = 0;
 
         return this;
@@ -72,11 +76,12 @@ class SquareGame {
                 let direction = 4;
             }
 
-            // waits for the key to be released.
+  // waits for the key to be released.
             while (~(key = 0)) {
-                let key = Keyboard.keyPressed();
-                do moveSquare();
+            let key = Keyboard.keyPressed();
+            do moveSquare();
             }
+            
         }
             
         return;
@@ -98,6 +103,8 @@ class SquareGame {
         }
 
         do Sys.wait(5); // Delays the next movement.
+
+        do square.drawLines();
         return;
     }
 }

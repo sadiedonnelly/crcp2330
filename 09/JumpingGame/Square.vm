@@ -167,7 +167,7 @@ function Square.moveUp 0
 push argument 0
 pop pointer 0
 push this 1
-push constant 1
+push constant 50
 gt
 if-goto IF_TRUE0
 goto IF_FALSE0
@@ -216,7 +216,7 @@ pop pointer 0
 push this 1
 push this 2
 add
-push constant 254
+push constant 200
 lt
 if-goto IF_TRUE0
 goto IF_FALSE0
