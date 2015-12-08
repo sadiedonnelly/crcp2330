@@ -4,17 +4,17 @@
 // File name: projects/09/Square/Main.jack
 
 /**
- * The Main class initializes a new Square Dance game and starts it.
+ * The Main class initializes a new Error 13 game and starts it.
  */
 class Main {
 
     /** Initializes a new game and starts it. */    
     function void main() {
-        var Game jumpingGame;
+        var Game error13;
 
-        let jumpingGame = Game.new();
-        do jumpingGame.run();
-        do jumpingGame.dispose();
+        let error13 = Game.new();
+        do error13.run();
+        do error13.dispose();
 
         return;
     }

@@ -1,0 +1,84 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/09/Square/Square.jack
+
+class Circle {
+
+    // Location on the screen
+    field int x, y;
+
+    // The radius of the circle
+    field int r;
+
+    field int screenHeight, screenWidth;
+
+    /** Constructs a new square with a given location and size. */
+
+    constructor Circle new(int Ax, int Ay, int Aradius) {
+        let x = Ax;
+        let y = Ay;
+        let r = Aradius;
+        let screenHeight = 254;
+        let screenWidth = 510;
+
+        do draw();
+
+        return this;
+    }
+
+    /** Deallocates the object's memory. */
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    /** Draws the square on the screen. */
+    method void draw() {
+        do Screen.setColor(true);
+        do Screen.drawCircle(x, y, r + 2);
+        do Screen.setColor(false);
+        do Screen.drawCircle(x, y, r);
+        return;
+    }
+
+    /** Erases the square from the screen. */
+    method void erase() {
+        do Screen.setColor(false);
+        do Screen.drawRectangle(x, y, r + 2);
+        return;
+    } 
+
+    /** Moves left by 1 pixel. */
+    method void moveLeft() {
+        if (x > ((10) + r)) {
+            do Screen.setColor(false);
+            do Screen.drawCircle(x, y, r + 2);
+            let x = x - 1;
+            do Screen.setColor(true);
+            do Screen.drawCircle(x, y, r + 2);
+            do Screen.setColor(false);
+            do Screen.drawCircle(x, y, r);
+        }
+        return;
+    }
+
+    method void moveRight() {
+        do Screen.setColor(false);
+        do Screen.drawCircle(x, y, r - 2);
+        let x = x + 1;
+        do Screen.setColor(true);
+        do Screen.drawCircle(x, y, r - 2);
+        do Screen.setColor(false);
+        do Screen.drawCircle(x, y, r);
+        return;
+    }
+
+    method int getX() {
+        return x;
+    }
+
+    method int getR() {
+        return r;
+    }
+}

@@ -1,0 +1,139 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/09/Square/SquareGame.jack
+
+/**
+ * This is a game in which you must erase all the circles
+ * before the leftmost circle reaches the left side of
+ * the screen.
+ * The error message functions as an end game screen.
+ */
+
+class Game {
+
+    // The square
+    field Square square;
+
+    // The circles
+    field Circle circle1;
+    field Circle circle2;
+    field Circle circle3;
+    field Circle circle4;
+    field Circle circle5;
+
+    // The square's movement direction
+    field int direction; // 0=none,1=up,2=down,3=left,4=right
+
+    field int screenHeight, screenWidth;
+
+    /** Constructs a new Square Game. */
+    constructor Game new() {
+        let screenHeight = 254;
+        let screenWidth = 510;
+        let circle1 = Circle.new(screenWidth-490,screenHeight/4,10);
+        let circle2 = Circle.new(screenWidth-300,(screenHeight/4)*2,10);
+        let circle3 = Circle.new(screenWidth-200, (screenHeight/4)*3,10);
+        let circle4 = Circle.new(screenWidth-100, (screenHeight/8)*3,10);
+        let circle5 = Circle.new(screenWidth-50, (screenHeight/8)*5,10);
+        let square = Square.new(screenWidth/2-15, screenHeight/2-15, 30);
+
+        let direction = 0;
+
+        return this;
+    }
+
+    /** Deallocates the object's memory. */
+    method void dispose() {
+        do square.dispose();
+        do circle1.dispose();
+        do circle2.dispose();
+        do circle3.dispose();
+        do circle4.dispose();
+        do circle5.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    /** Starts the game. Handles inputs from the user that control
+     *  the square's movement, direction and size. */
+    method void run() {
+        var char key;
+        var boolean exit;
+
+        let exit = false;
+
+        while (~exit) {
+            // waits for a key to be pressed.
+            do square.drawLines();
+            do moveCircle();
+            while (key = 0) {
+                let key = Keyboard.keyPressed();
+                do moveSquare();
+            }
+
+            if (key = 81) {
+                let exit = true;
+            }
+            if (key = 131) {
+                //let direction = 1;
+                do square.moveUp();
+            }
+            if (key = 133) {
+                //let direction = 2;
+                do square.moveDown();
+            }
+            if (key = 130) {
+                let direction = 3;
+            }
+            if (key = 132) {
+                let direction = 4;
+            }
+
+    // waits for the key to be released.
+            while (~(key = 0)) {
+            let key = Keyboard.keyPressed();
+            do moveSquare();
+            }
+        }
+
+        return;
+	}
+
+    /** Moves the square by 2 pixels in the current direction. */
+    method void moveSquare() {
+        if (direction = 1) {
+            do square.moveUp();
+        }
+        if (direction = 2) {
+            do square.moveDown();
+        }
+        if (direction = 3) {
+            do square.moveLeft();
+        }
+        if (direction = 4) {
+            do square.moveRight();
+        }
+
+        do square.drawLines();
+
+        do Sys.wait(5); // Delays the next movement.
+
+        return;
+    }
+
+    method void moveCircle() {
+        do circle1.moveLeft();
+        do square.drawLines();
+        return;
+    }
+
+    method void erase() {
+        if circle1.getX < 30 {
+            Screen.setColor(false);
+            Screen.drawRect(0,0,screenWidth,screenHeight);
+        }
+        return;
+    }
+
+}
