@@ -21,9 +21,7 @@ end
 		lines.delete("")
 		return lines
 	end
-
-end
-
+	
 def args_valid?
 	ARGV[0] && ARGV[0].end_with?(".asm") && ARGV.length == 1
 end
