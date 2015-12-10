@@ -31,20 +31,19 @@ class Parser
 
 	def split_comp(instruction)
 		if instruction.include?("=")
-			instruction.split("=")[-1]
+			instruction.split("=")[1]
+		elsif instruction.include?(";")
+			instruction.split(";")[0]
 		end
 	end
 
 	def split_jump(instruction)
-		instruction.split(";")[-1]
+		instruction.split(";")[1]
 	end
 
 	def split_dest(instruction)
-		if instruction_include?("=")
+		if instruction.include?("=")
 			instruction.split("=")[0]
-		end
-		if instruction.include?(";")
-			instruction.split(";")[0]
 		end
 	end
 
