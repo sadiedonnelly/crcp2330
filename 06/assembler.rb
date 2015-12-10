@@ -13,7 +13,6 @@ class Assembler
 	def assemble!
 		@parser.parse.each { |instruction| @hack_file << instruction << "\n"}
 	end
-end
 
 	def instructions_from_file
 		lines = @asm_file.readlines
@@ -21,6 +20,7 @@ end
 		lines.delete("")
 		return lines
 	end
+end
 	
 def args_valid?
 	ARGV[0] && ARGV[0].end_with?(".asm") && ARGV.length == 1
